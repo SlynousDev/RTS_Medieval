@@ -1,0 +1,73 @@
+[gd_scene load_steps=16 format=3 uid="uid://m3kqrymbvddi"]
+
+[ext_resource type="PackedScene" uid="uid://ykj5b0k3xjy4" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Grass/fairy_tree.glb" id="1_c6833"]
+[ext_resource type="PackedScene" uid="uid://b011k8psleiak" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Grass/Maze.glb" id="2_3b5am"]
+[ext_resource type="PackedScene" uid="uid://3yy2hhjylxyo" path="res://Assets/Tileset/Tilemap/scene_of_interest/land/Grass_block.glb" id="2_5sedx"]
+[ext_resource type="PackedScene" uid="uid://bth8rweamvrr8" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Grass/Vault.glb" id="3_pjy1w"]
+[ext_resource type="PackedScene" uid="uid://doebya2pqcxi" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Grass/Forest.glb" id="5_bsdjw"]
+[ext_resource type="PackedScene" uid="uid://caaxhu0hu1yle" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Mountain.glb" id="6_l3qwb"]
+[ext_resource type="PackedScene" uid="uid://b3g6d04sv87in" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Grass/Castle.glb" id="7_fkep4"]
+[ext_resource type="PackedScene" uid="uid://bgctnbt2lmltm" path="res://Assets/Tileset/Tilemap/scene_of_interest/land/Snow_block.glb" id="8_8qxqw"]
+[ext_resource type="PackedScene" uid="uid://bmaunni048x42" path="res://Assets/Tileset/Tilemap/scene_of_interest/land/Sand_block.glb" id="9_c84m6"]
+[ext_resource type="PackedScene" uid="uid://c4kh2gayka2gr" path="res://Assets/Tileset/Tilemap/scene_of_interest/land/Lava_herb.glb" id="10_k5ypv"]
+[ext_resource type="MeshLibrary" uid="uid://7cxuc27o7rje" path="res://Assets/Tileset/Scene_full_map/Scene_full_map_ready.tres" id="11_65s83"]
+[ext_resource type="PackedScene" uid="uid://dllik748hyb41" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Desert/Pyramid.glb" id="12_sbxkc"]
+[ext_resource type="PackedScene" uid="uid://3cas0jfeabw2" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Lava/Eerie_orb.glb" id="13_pcbji"]
+[ext_resource type="PackedScene" uid="uid://y1tqdyk2171o" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Snow/Ice_castle.glb" id="14_7fhld"]
+[ext_resource type="PackedScene" uid="uid://dam4nqmp783bu" path="res://Assets/Tileset/Tilemap/scene_of_interest/poi/Snow/Igloo.glb" id="15_bf3gq"]
+
+[node name="Scene_tileset" type="Node3D"]
+
+[node name="Castle2" parent="." instance=ExtResource("7_fkep4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00295, 2.38419e-07, -0.00185108)
+visible = false
+
+[node name="Forest2" parent="." instance=ExtResource("5_bsdjw")]
+visible = false
+
+[node name="Mountain2" parent="." instance=ExtResource("6_l3qwb")]
+visible = false
+
+[node name="fairy_tree" parent="." instance=ExtResource("1_c6833")]
+visible = false
+
+[node name="Vault2" parent="." instance=ExtResource("3_pjy1w")]
+visible = false
+
+[node name="Maze2" parent="." instance=ExtResource("2_3b5am")]
+visible = false
+
+[node name="Grass_block" parent="." instance=ExtResource("2_5sedx")]
+visible = false
+
+[node name="Snow_block2" parent="." instance=ExtResource("8_8qxqw")]
+visible = false
+
+[node name="Sand_block" parent="." instance=ExtResource("9_c84m6")]
+visible = false
+
+[node name="Lava_herb" parent="." instance=ExtResource("10_k5ypv")]
+visible = false
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("11_65s83")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(2, 65535, 0, 3, 65535, 1, 4, 65535, 2, 5, 65535, 3, 6, 65535, 4, 7, 65535, 5, 8, 65535, 6, 9, 65535, 7, 10, 65535, 8, 11, 65535, 9, 12, 65535, 10, 13, 65535, 11, 14, 65535, 12, 15, 65535, 13)
+}
+
+[node name="Pyramid2" parent="." instance=ExtResource("12_sbxkc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5142, 0.0178514, -0.493604)
+visible = false
+
+[node name="Eerie_orb" parent="." instance=ExtResource("13_pcbji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5264, 0.0741972, -0.47608)
+visible = false
+
+[node name="Ice_castle2" parent="." instance=ExtResource("14_7fhld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5753, 0.166854, -0.486019)
+visible = false
+
+[node name="Igloo2" parent="." instance=ExtResource("15_bf3gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6541, 0.0741972, -0.500929)
+visible = false

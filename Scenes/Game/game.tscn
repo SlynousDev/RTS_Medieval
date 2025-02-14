@@ -1,0 +1,259 @@
+[gd_scene load_steps=15 format=3 uid="uid://bwaq6cvninjl5"]
+
+[ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_q2dyo"]
+[ext_resource type="Script" path="res://Scripts/Game/map_land.gd" id="2_8fpq3"]
+[ext_resource type="MeshLibrary" uid="uid://7cxuc27o7rje" path="res://Assets/Tileset/Scene_full_map/Scene_full_map_ready.tres" id="3_jc5mu"]
+[ext_resource type="Sky" uid="uid://iv3aikuusyln" path="res://Assets/Node3D/WorldEnvironment/Sky/sky.tres" id="5_05s1v"]
+[ext_resource type="Script" path="res://Scripts/Game/camera.gd" id="5_74mht"]
+[ext_resource type="Script" path="res://Scripts/Game/game_map.gd" id="6_tcv4t"]
+[ext_resource type="Texture2D" uid="uid://da83tghhm7huy" path="res://Assets/Tileset/Tilemap/full_map/Map_pic.png" id="7_vsi5g"]
+[ext_resource type="Script" path="res://Scripts/Game/camera_2d.gd" id="8_narcd"]
+
+[sub_resource type="Environment" id="Environment_8dar5"]
+background_mode = 2
+sky = ExtResource("5_05s1v")
+
+[sub_resource type="Animation" id="Animation_p0ctp"]
+resource_name = "Day_night_cycle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sd75j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bopy8"]
+_data = {
+"Day_night_cycle": SubResource("Animation_p0ctp"),
+"RESET": SubResource("Animation_sd75j")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bci3g"]
+texture = ExtResource("7_vsi5g")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_whwvo"]
+sources/0 = SubResource("TileSetAtlasSource_bci3g")
+
+[node name="Game" type="Node"]
+script = ExtResource("1_q2dyo")
+
+[node name="Pause_Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Pause_Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Resume" type="Button" parent="Pause_Menu/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Save" type="Button" parent="Pause_Menu/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Quit" type="Button" parent="Pause_Menu/VBoxContainer"]
+layout_mode = 2
+text = "Back to the menu"
+
+[node name="perma-game_menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="perma-game_menu"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 29.0
+offset_right = 216.0
+offset_bottom = 126.0
+
+[node name="gold" type="Label" parent="perma-game_menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Player_Base" type="Node3D" parent="."]
+
+[node name="Map_Land" type="Node3D" parent="."]
+script = ExtResource("2_8fpq3")
+
+[node name="GridMap" type="GridMap" parent="Map_Land"]
+mesh_library = ExtResource("3_jc5mu")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 1
+
+[node name="Camera3D" type="Camera3D" parent="Map_Land"]
+script = ExtResource("5_74mht")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map_Land"]
+environment = SubResource("Environment_8dar5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map_Land"]
+light_color = Color(0.992157, 0.984314, 0.827451, 1)
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="Day-night-cycle" type="AnimationPlayer" parent="Map_Land"]
+libraries = {
+"": SubResource("AnimationLibrary_bopy8")
+}
+autoplay = "Day_night_cycle"
+
+[node name="Game_map" type="Node" parent="."]
+script = ExtResource("6_tcv4t")
+
+[node name="Full_Map" type="Control" parent="Game_map"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Game_map/Full_Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Map" type="GridContainer" parent="Game_map/Full_Map"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Square" type="TileMapLayer" parent="Game_map/Full_Map/Map"]
+tile_set = SubResource("TileSet_whwvo")
+
+[node name="Symbol" type="TileMapLayer" parent="Game_map/Full_Map/Map"]
+
+[node name="Camera2D" type="Camera2D" parent="Game_map/Full_Map/Map"]
+position = Vector2(21, 20)
+script = ExtResource("8_narcd")
+
+[node name="Expedition" type="VBoxContainer" parent="Game_map/Full_Map"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 60.0
+offset_right = -60.0
+offset_bottom = 31.0
+grow_horizontal = 0
+
+[node name="Explo_but" type="Button" parent="Game_map/Full_Map/Expedition"]
+layout_mode = 2
+text = "Send a scout team"
+
+[node name="Cell_manager" type="VBoxContainer" parent="Game_map/Full_Map"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0889757
+anchor_top = 0.78858
+anchor_right = 0.0889757
+anchor_bottom = 0.78858
+offset_left = -85.5
+offset_top = -43.0
+offset_right = 85.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="go_to_the_cell" type="Button" parent="Game_map/Full_Map/Cell_manager"]
+layout_mode = 2
+text = "Go to the cell"
+
+[node name="Explo_time_remaining" type="Label" parent="Game_map"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -155.0
+offset_top = 110.0
+offset_right = -90.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "                             "
+
+[node name="Timer_exp" type="Timer" parent="Game_map"]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Game_map/Full_Map/Expedition/Explo_but" to="Game_map" method="_on_explo_but_pressed"]
+[connection signal="pressed" from="Game_map/Full_Map/Cell_manager/go_to_the_cell" to="Game_map" method="_on_go_to_the_cell_pressed"]
+[connection signal="timeout" from="Game_map/Timer_exp" to="Game_map" method="_on_timer_exp_timeout"]

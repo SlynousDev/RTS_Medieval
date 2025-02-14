@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://b74i44nq2ve4e"]
+
+[ext_resource type="PackedScene" uid="uid://3yy2hhjylxyo" path="res://Assets/Tileset/Tilemap/scene_of_interest/land/Grass_block.glb" id="1_q3uek"]
+[ext_resource type="PackedScene" uid="uid://c3wfgwacy6m4m" path="res://Assets/Tileset/Town/Castle_tower.glb" id="2_187ri"]
+[ext_resource type="PackedScene" uid="uid://buc28issq1d06" path="res://Assets/Tileset/Town/Castle_wall.glb" id="3_5xcj2"]
+[ext_resource type="PackedScene" uid="uid://dwqupbtk7b7h8" path="res://Assets/Tileset/Town/Main_castle.glb" id="4_aytw6"]
+[ext_resource type="PackedScene" uid="uid://buodcwwhwtxkm" path="res://Assets/Tileset/Town/Expedition_camp.glb" id="5_njnhh"]
+[ext_resource type="PackedScene" uid="uid://cjwn70jojdkrg" path="res://Assets/Tileset/Town/Church.glb" id="6_3i6r2"]
+[ext_resource type="PackedScene" uid="uid://bo25jwl55f7lf" path="res://Assets/Tileset/Town/Arena.glb" id="7_0xl8j"]
+[ext_resource type="PackedScene" uid="uid://dedinthje3par" path="res://Assets/Tileset/Town/Barrack.glb" id="8_a17du"]
+[ext_resource type="PackedScene" uid="uid://diumdvnc3jxw8" path="res://Assets/Tileset/Town/Observatory.glb" id="9_2njjn"]
+[ext_resource type="PackedScene" uid="uid://egemrpvy8l71" path="res://Assets/Tileset/Town/Tower_slot.glb" id="10_naxyx"]
+
+[node name="main_castle_assets" type="Node3D"]
+
+[node name="Grass_block" parent="." instance=ExtResource("1_q3uek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.513169, 0, -0.484086)
+
+[node name="Castle_tower" parent="." instance=ExtResource("2_187ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55522, 0, -0.461564)
+
+[node name="Castle_wall" parent="." instance=ExtResource("3_5xcj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56311, 0, -0.501879)
+
+[node name="Main_castle" parent="." instance=ExtResource("4_aytw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.53857, 0, -0.367494)
+
+[node name="Expedition_camp" parent="." instance=ExtResource("5_njnhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.66974, 0, -0.985666)
+
+[node name="Church2" parent="." instance=ExtResource("6_3i6r2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0349, 0, -0.40781)
+
+[node name="Arena2" parent="." instance=ExtResource("7_0xl8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3302, 0, -0.371196)
+
+[node name="Barrack2" parent="." instance=ExtResource("8_a17du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7125, 0, -0.298064)
+
+[node name="Observatory2" parent="." instance=ExtResource("9_2njjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3892, -0.225307, 0.144994)
+
+[node name="Tower_slot" parent="." instance=ExtResource("10_naxyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9769, 0, 0.0492934)

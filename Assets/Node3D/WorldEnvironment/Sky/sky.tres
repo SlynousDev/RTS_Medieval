@@ -1,0 +1,14 @@
+[gd_resource type="Sky" load_steps=4 format=3 uid="uid://iv3aikuusyln"]
+
+[sub_resource type="Gradient" id="Gradient_65jm7"]
+colors = PackedColorArray(0.180392, 0.180392, 0.470588, 1, 0.133196, 0.133196, 0.133196, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_863le"]
+gradient = SubResource("Gradient_65jm7")
+fill_from = Vector2(1, 0.153846)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_pusrq"]
+night_sky = SubResource("GradientTexture2D_863le")
+
+[resource]
+sky_material = SubResource("PhysicalSkyMaterial_pusrq")
