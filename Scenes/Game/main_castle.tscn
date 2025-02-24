@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dklf8jd4j7xnd"]
+[gd_scene load_steps=8 format=3 uid="uid://dklf8jd4j7xnd"]
 
-[ext_resource type="Script" path="res://Scripts/Game/camera_for_test.gd" id="1_bwsg1"]
 [ext_resource type="Script" path="res://Scripts/Game/main_castle.gd" id="1_dpfgo"]
 [ext_resource type="Sky" uid="uid://iv3aikuusyln" path="res://Assets/Node3D/WorldEnvironment/Sky/sky.tres" id="1_ua3e3"]
+[ext_resource type="Script" path="res://Scripts/Game/camera_for_test.gd" id="2_1s2qy"]
 [ext_resource type="MeshLibrary" uid="uid://bs1gae2e7ixt0" path="res://Assets/Tileset/Town/Town_tilset_ready.tres" id="4_nmkgy"]
+[ext_resource type="Script" path="res://Scripts/Game/main_castle_ui.gd" id="5_se6uy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_733r1"]
 cell_size = 0.1
@@ -12,44 +13,6 @@ cell_height = 0.1
 [sub_resource type="Environment" id="Environment_e8u0a"]
 background_mode = 2
 sky = ExtResource("1_ua3e3")
-
-[sub_resource type="Animation" id="Animation_p0ctp"]
-resource_name = "Day_night_cycle"
-length = 10.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_sd75j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bopy8"]
-_data = {
-"Day_night_cycle": SubResource("Animation_p0ctp"),
-"RESET": SubResource("Animation_sd75j")
-}
 
 [node name="Main Castle" type="Node"]
 script = ExtResource("1_dpfgo")
@@ -60,7 +23,7 @@ enabled = false
 
 [node name="Camera3D" type="Camera3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.45374, 4.46017)
-script = ExtResource("1_bwsg1")
+script = ExtResource("2_1s2qy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D"]
 environment = SubResource("Environment_e8u0a")
@@ -74,12 +37,28 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.317, 0)
 light_color = Color(0.992157, 0.984314, 0.827451, 1)
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="Day-night-cycle" type="AnimationPlayer" parent="NavigationRegion3D"]
-libraries = {
-"": SubResource("AnimationLibrary_bopy8")
-}
-autoplay = "Day_night_cycle"
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_se6uy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 83.0
+offset_right = 203.0
+offset_bottom = 123.0
+
+[node name="back_to_lobby" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "back to lobby
+"
+
+[connection signal="pressed" from="UI/VBoxContainer/back_to_lobby" to="UI" method="_on_back_to_lobby_pressed"]

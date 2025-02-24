@@ -86,7 +86,12 @@ func _ready():
 				placed += 1
 	#print("GameData.kingdom_placed : ", GameData.kingdom_placed)
 	
-	kingdom_selector()
+	if GameData.game_start == 0:
+		GameData.game_start = 1
+		kingdom_selector()
+	
+	spawn_scene()
+	
 	
 	# Afficher la grille dans la console
 	for ligne in grille:
@@ -106,6 +111,8 @@ func kingdom_selector():
 	print("GameData.cell_found : ", GameData.cell_found)
 	#print("cell_found de Slynous : ", GameData.cell_found[GameData.player_name[GameData.current_player]])
 	#print(EnvData.full_map_list)
+
+func spawn_scene():
 	emit_signal("start_game")
 
 # Func qui créé un tore sur la grille où l'on peut placer les royaumme au début

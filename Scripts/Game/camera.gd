@@ -80,7 +80,7 @@ func _update_camera_position():
 
 func on_recreate_map():
 	distance = 30
-	for i in range(22):
+	for i in range(20):
 		#print("ça zoom")
 		await get_tree().create_timer(0.01).timeout
 		distance = max(min_distance, distance - 1)

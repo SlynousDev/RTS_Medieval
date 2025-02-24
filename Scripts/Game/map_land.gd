@@ -5,7 +5,10 @@ signal pending_cell # relié à la fonction _on_pending_cell de game_map.gd
 @onready var scene_map = $GridMap
 @onready var cam = $Camera3D
 
+@onready var sun: DirectionalLight3D = $DirectionalLight3D
+
 @export var mesh_lib: MeshLibrary
+
 var new_transform = Transform3D()
 
 var occuped_tile = []
@@ -26,7 +29,7 @@ func set_mesh_lib():
 		mesh_lib.set_item_mesh_transform(0, new_transform)
 		
 		# item 1 = Grass block
-		new_transform.origin = Vector3(0,-0.031,0)
+		new_transform.origin = Vector3(0,.031,0)
 		mesh_lib.set_item_mesh_transform(1, new_transform)
 		
 		# item 2 = Forest
@@ -100,6 +103,17 @@ func _ready() -> void:
 	
 	
 	#create_new_scene(size, grass, vault, true, true)
+
+# Func qui permet de faire des choses à chaque frames
+func _process(delta: float) -> void:
+	
+	# Contrôle du temps
+	WeatherData.update_time(delta)
+	#print("le temps : ", WeatherData.current_time)
+	sun.rotation_degrees.x =lerp(-90,270, WeatherData.current_time/WeatherData.day_time)
+	
+
+
 
 # Func qui permet de générer le sol d'une scène
 func set_land(size: int, type: int):

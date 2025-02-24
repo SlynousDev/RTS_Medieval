@@ -21,6 +21,11 @@ GameData="*res://Scripts/Game/Singleton/game_data.gd"
 LootTable="*res://Scripts/Game/Singleton/loot_table.gd"
 EnvData="*res://Scripts/Game/Singleton/env_data.gd"
 UseFunc="*res://Scripts/Game/Singleton/useful_func.gd"
+WeatherData="*res://Scripts/Game/Singleton/weather_data.gd"
+
+[dotnet]
+
+project/assembly_name="RTS medieval"
 
 [input]
 

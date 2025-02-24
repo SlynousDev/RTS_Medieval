@@ -1,5 +1,7 @@
 extends Node
 
+var game_start = 0 # Savoir si la partie a start ou non
+
 var map = [] # Variable qui stock la map sous forme d'un tableau à 2 entrée
 
 var current_player = 0 # POV du joueur actuel
@@ -13,6 +15,9 @@ var kingdom_placed = [] # Variable lors du placement aléatoire des royaumme dan
 
 var player_name = ["Slynous", "Buriquzz"] # contient les noms des joueurs
 var player_location = {} # contient le nom et les coordonées des royaumme
+
+func time(delta):
+	pass
 
 func setup_player_cell_found():
 	for i in player_name:
